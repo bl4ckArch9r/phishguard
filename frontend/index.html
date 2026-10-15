@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhishGuard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/theme.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#scan" aria-label="PhishGuard home">
+      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2 4 5.5v6.8c0 5.2 3.6 9.2 9 11.2 5.4-2 9-6 9-11.2V5.5L13 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m8.8 13 3 3 5.4-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>PhishGuard</span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#scan" data-tab="scan">Scan</a>
+      <a href="#dashboard" data-tab="dashboard">Dashboard</a>
+      <a href="#history" data-tab="history">History</a>
+      <a href="#model" data-tab="model">Model</a>
+    </nav>
+    <button id="themeBtn" class="theme-btn" type="button" aria-label="Switch to light theme"><span class="ti" aria-hidden="true">☀</span><span class="tl">Light</span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- SCAN -->
+  <section id="tab-scan" class="tab">
+    <div class="scan-head">
+      <h1>Is this link safe to open?</h1>
+      <p>Paste a link from an email, SMS or chat. PhishGuard reads the address, the page behind it, the domain's history and threat feeds, then explains what it found.</p>
+    </div>
+    <form id="scanForm" class="scan-box" autocomplete="off">
+      <label for="urlInput" class="sr">Link to check</label>
+      <input id="urlInput" type="text" inputmode="url" spellcheck="false" placeholder="e.g. secure-login.example.com/verify" maxlength="2048" required>
+      <button id="scanBtn" type="submit">Check link</button>
+    </form>
+    <label class="deep"><input type="checkbox" id="deepToggle" checked> Also inspect the live page, certificate and domain age <span class="muted">(contacts the site once; nothing is submitted)</span></label>
+
+    <div id="progress" class="progress" hidden aria-live="polite"></div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <div id="result" hidden></div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="tab-dashboard" class="tab" hidden>
+    <h2>Dashboard</h2>
+    <div id="dashContent"></div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="tab-history" class="tab" hidden>
+    <h2>Scan history</h2>
+    <p class="muted">Links are saved without their query string, which can contain personal tokens.</p>
+    <div id="historyContent"></div>
+  </section>
+
+  <!-- MODEL -->
+  <section id="tab-model" class="tab" hidden>
+    <h2>Model &amp; evaluation</h2>
+    <div id="modelContent"></div>
+  </section>
+</main>
+
+<footer class="foot">PhishGuard · IE3092 Information Security Project · Scores describe likelihood, not certainty. When in doubt, don't enter credentials.</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>
